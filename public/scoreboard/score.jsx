@@ -1,3 +1,21 @@
+var PLAYERS = [
+	{
+		name: "Mitt Tidwell",
+		score: 32,
+		id: 1	
+	},
+	{
+		name: "Tim Kessler",
+		score: 29,
+		id: 2
+	},
+	{
+		name: "Marley Dozer",
+		score: 8,
+		id: 3
+	}
+]
+
 function Header(props) {
 	return (
 		<div className="header">
@@ -57,9 +75,9 @@ function Application (props) {
 			<Header title = {props.title} />
 
 			<div className="players">
-				<Player name="Mitt Tidwell" score={32} />
-				<Player name="Tim Kessler" score={29} />
-				<Player name="Marley Dozer" score={8} />
+				{props.players.map(function (player) {
+					return <Player name={player.name} score={player.score} key={player.id} />
+				})}
 			</div>
 		</div>
 	);
@@ -69,6 +87,11 @@ function Application (props) {
 // .isRequired is added at the end to ensure that something is passed in. If nothing is passed in then it will show nothing on the page, but when you check the console you will see a error there
 Application.propTypes = {
 	title: React.PropTypes.string.isRequired,
+	players: React.PropTypes.arrayOf(React.PropTypes.shape({
+		name: React.PropTypes.string.isRequired,
+		score: React.PropTypes.number.isRequired,
+		id: React.PropTypes.number.isRequired,
+	})).isRequired,
 };
 
 // This is used as a default in case a prop is not passed in
@@ -76,7 +99,7 @@ Application.defaultProps = {
 	title: "Scoreboard",
 }
 
-ReactDOM.render(<Application title="My Scoreboard"/>, document.getElementById('container'));
+ReactDOM.render(<Application players={PLAYERS}/>, document.getElementById('container'));
 
 
 
