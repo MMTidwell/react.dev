@@ -1,9 +1,9 @@
-// Componates in REACT sould start with a Cap letter
+// Components in REACT should start with a Cap letter
 function Application () {
 	return (
 		<div>
 			<h1>Hello from REACT!</h1>
-			<p>I was rendered fromthe Application component!</p>
+			<p>I was rendered from the Application component!</p>
 		</div>
 	);
 }
